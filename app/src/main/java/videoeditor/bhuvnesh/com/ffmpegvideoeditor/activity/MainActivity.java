@@ -444,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void executeCutVideoCommand(int startMs, int endMs) {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
 
         String filePrefix = "cut_video";
@@ -474,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void executeCompressCommand() {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
 
         String filePrefix = "compress_video";
@@ -502,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void extractImagesVideo(int startMs, int endMs) {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES
+                Environment.DIRECTORY_DCIM
         );
 
         String filePrefix = "extract_picture";
@@ -535,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void executeFadeInFadeOutCommand() {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
 
         String filePrefix = "fade_video";
@@ -564,7 +564,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void executeFastMotionVideoCommand() {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
 
         String filePrefix = "speed_video";
@@ -593,7 +593,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void executeSlowMotionVideoCommand() {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
 
         String filePrefix = "slowmotion_video";
@@ -650,7 +650,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void splitVideoCommand(String path) {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
         String filePrefix = "split_video";
         String fileExtn = ".mp4";
@@ -671,7 +671,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void reverseVideoCommand() {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
         File srcDir = new File(moviesDir, ".VideoSplit");
         File[] files = srcDir.listFiles();
@@ -697,7 +697,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void concatVideoCommand() {
         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES
+                Environment.DIRECTORY_DCIM
         );
         File srcDir = new File(moviesDir, ".VideoPartsReverse");
         File[] files = srcDir.listFiles();
@@ -771,7 +771,7 @@ public class MainActivity extends AppCompatActivity {
                         concatVideoCommand();
                     } else if (choice == 10) {
                         File moviesDir = Environment.getExternalStoragePublicDirectory(
-                                Environment.DIRECTORY_MOVIES
+                                Environment.DIRECTORY_DCIM
                         );
                         File destDir = new File(moviesDir, ".VideoPartsReverse");
                         File dir = new File(moviesDir, ".VideoSplit");
