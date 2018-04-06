@@ -73,9 +73,9 @@
             android:layout_marginTop="@dimen/dp5"
             android:background="@drawable/upload_video_selector"
             android:gravity="center"
-            android:padding="@dimen/dp5"
+            android:padding="16dp"
             android:text="@string/uploadVideo"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp16" />
 
         <TableLayout
@@ -99,7 +99,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/compressVideo"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
                 <TextView
@@ -111,7 +111,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/cutVideo"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp16" />
 
                 <TextView
@@ -119,11 +119,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/extract_images_selector"
+                    android:background="@drawable/compress_video_selector"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/extractImages"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
                 <TextView
@@ -131,11 +131,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/extract_audio_selector"
+                    android:background="@drawable/crop_video_selector"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/extractAudio"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp16" />
             </TableRow>
 
@@ -146,11 +146,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/fade_video_selector"
+                    android:background="@drawable/crop_video_selector"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/addFade"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp16" />
 
                 <TextView
@@ -158,11 +158,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/increase_speed_selector"
+                    android:background="@drawable/compress_video_selector"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/increaseSpeed"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
 
                 <TextView
@@ -170,11 +170,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/slow_video_selector"
+                    android:background="@drawable/crop_video_selector"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/decreaseSpeed"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp16" />
 
                 <TextView
@@ -182,11 +182,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/reverse_video_selector"
+                    android:background="@drawable/compress_video_selector"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/reverseVideo"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/sp16" />
             </TableRow>
         </TableLayout>

@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">FFmpeg Video Editor</string>
+    <string name="app_name">Video Editor</string>
     <string name="rangeSeekBarText">Use RangeSeekbar to select time range for cutting video or extracting images from video(rangeseekbar ineffective for other options)</string>
-    <string name="uploadVideo">Upload\nVideo</string>
+    <string name="uploadVideo">Upload Video</string>
     <string name="compressVideo">Compress\nVideo</string>
     <string name="cutVideo">Cut\nVideo</string>
     <string name="extractImages">Extract\nImages</string>
