@@ -73,20 +73,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
-        final TextView uploadVideo = (TextView) findViewById(R.id.uploadVideo);
-        TextView cutVideo = (TextView) findViewById(R.id.cropVideo);
-        TextView compressVideo = (TextView) findViewById(R.id.compressVideo);
-        TextView extractImages = (TextView) findViewById(R.id.extractImages);
-        TextView fadeEffect = (TextView) findViewById(R.id.fadeEffect);
-        TextView increaseSpeed = (TextView) findViewById(R.id.increaseSpeed);
-        TextView decreaseSpeed = (TextView) findViewById(R.id.decreaseSpeed);
-        final TextView reverseVideo = (TextView) findViewById(R.id.reverseVideo);
+        final TextView uploadVideo = findViewById(R.id.upload_video_btn);
+        TextView cutVideo = findViewById(R.id.cropVideo);
+        TextView compressVideo = findViewById(R.id.compressVideo);
+        TextView extractImages = findViewById(R.id.extractImages);
+        TextView fadeEffect = findViewById(R.id.fadeEffect);
+        TextView increaseSpeed = findViewById(R.id.increaseSpeed);
+        TextView decreaseSpeed = findViewById(R.id.decreaseSpeed);
+        final TextView reverseVideo = findViewById(R.id.reverseVideo);
 
 
-        tvLeft = (TextView) findViewById(R.id.tvLeft);
-        tvRight = (TextView) findViewById(R.id.tvRight);
+        tvLeft = findViewById(R.id.tvLeft);
+        tvRight = findViewById(R.id.tvRight);
 
-        final TextView extractAudio = (TextView) findViewById(R.id.extractAudio);
+        final TextView extractAudio = findViewById(R.id.extractAudio);
         if (Build.VERSION.SDK_INT == 16)
             extractAudio.setVisibility(View.GONE);
         else
