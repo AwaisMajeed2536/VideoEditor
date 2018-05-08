@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
-        final TextView uploadVideo = findViewById(R.id.upload_video_btn);
         TextView cutVideo = findViewById(R.id.cropVideo);
         TextView compressVideo = findViewById(R.id.compressVideo);
         TextView extractImages = findViewById(R.id.extractImages);
@@ -99,17 +98,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         rangeSeekBar.setEnabled(false);
         loadFFMpegBinary();
-
-        uploadVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= 23)
-                    getPermission();
-                else
-                    uploadVideo();
-
-            }
-        });
+        retrieveAndSetVideoDataFromIntent(Uri.parse(getIntent().getStringExtra(Constants.URI_PASS_KEY)));
 
         compressVideo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,31 +215,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getPermission() {
-        String[] params = null;
-        String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-        String readExternalStorage = Manifest.permission.READ_EXTERNAL_STORAGE;
-
-        int hasWriteExternalStoragePermission = ActivityCompat.checkSelfPermission(this, writeExternalStorage);
-        int hasReadExternalStoragePermission = ActivityCompat.checkSelfPermission(this, readExternalStorage);
-        List<String> permissions = new ArrayList<String>();
-
-        if (hasWriteExternalStoragePermission != PackageManager.PERMISSION_GRANTED)
-            permissions.add(writeExternalStorage);
-        if (hasReadExternalStoragePermission != PackageManager.PERMISSION_GRANTED)
-            permissions.add(readExternalStorage);
-
-        if (!permissions.isEmpty()) {
-            params = permissions.toArray(new String[permissions.size()]);
-        }
-        if (params != null && params.length > 0) {
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    params,
-                    100);
-        } else
-            uploadVideo();
-    }
-
     private void getAudioPermission() {
         String[] params = null;
         String recordAudio = Manifest.permission.RECORD_AUDIO;
@@ -283,14 +247,6 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case 100: {
-
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    uploadVideo();
-                }
-            }
-            break;
             case 200: {
 
                 if (grantResults.length > 0
@@ -302,21 +258,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-    /**
-     * Opening gallery for uploading video
-     */
-    private void uploadVideo() {
-        try {
-            Intent intent = new Intent();
-            intent.setType("video/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Video"), REQUEST_TAKE_GALLERY_VIDEO);
-        } catch (Exception e) {
-
-        }
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -331,60 +272,53 @@ public class MainActivity extends AppCompatActivity {
         videoView.start();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_TAKE_GALLERY_VIDEO) {
-                selectedVideoUri = data.getData();
-                videoView.setVideoURI(selectedVideoUri);
-                videoView.start();
+    private void retrieveAndSetVideoDataFromIntent(Uri uri){
+        selectedVideoUri = uri;
+        videoView.setVideoURI(selectedVideoUri);
+        videoView.start();
 
 
-                videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                duration = mp.getDuration() / 1000;
+                tvLeft.setText("00:00:00");
+
+                tvRight.setText(getTime(mp.getDuration() / 1000));
+                mp.setLooping(true);
+                rangeSeekBar.setRangeValues(0, duration);
+                rangeSeekBar.setSelectedMinValue(0);
+                rangeSeekBar.setSelectedMaxValue(duration);
+                rangeSeekBar.setEnabled(true);
+
+                rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
                     @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        // TODO Auto-generated method stub
-                        duration = mp.getDuration() / 1000;
-                        tvLeft.setText("00:00:00");
+                    public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
+                        videoView.seekTo((int) minValue * 1000);
 
-                        tvRight.setText(getTime(mp.getDuration() / 1000));
-                        mp.setLooping(true);
-                        rangeSeekBar.setRangeValues(0, duration);
-                        rangeSeekBar.setSelectedMinValue(0);
-                        rangeSeekBar.setSelectedMaxValue(duration);
-                        rangeSeekBar.setEnabled(true);
+                        tvLeft.setText(getTime((int) bar.getSelectedMinValue()));
 
-                        rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
-                            @Override
-                            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
-                                videoView.seekTo((int) minValue * 1000);
-
-                                tvLeft.setText(getTime((int) bar.getSelectedMinValue()));
-
-                                tvRight.setText(getTime((int) bar.getSelectedMaxValue()));
-
-                            }
-                        });
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(r = new Runnable() {
-                            @Override
-                            public void run() {
-
-                                if (videoView.getCurrentPosition() >= rangeSeekBar.getSelectedMaxValue().intValue() * 1000)
-                                    videoView.seekTo(rangeSeekBar.getSelectedMinValue().intValue() * 1000);
-                                handler.postDelayed(r, 1000);
-                            }
-                        }, 1000);
+                        tvRight.setText(getTime((int) bar.getSelectedMaxValue()));
 
                     }
                 });
 
-//                }
+                final Handler handler = new Handler();
+                handler.postDelayed(r = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (videoView.getCurrentPosition() >= rangeSeekBar.getSelectedMaxValue().intValue() * 1000)
+                            videoView.seekTo(rangeSeekBar.getSelectedMinValue().intValue() * 1000);
+                        handler.postDelayed(r, 1000);
+                    }
+                }, 1000);
+
             }
-        }
+        });
+
     }
 
     private String getTime(int seconds) {

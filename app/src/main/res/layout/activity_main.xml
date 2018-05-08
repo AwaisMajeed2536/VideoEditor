@@ -16,19 +16,15 @@
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp200"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
-            android:layout_marginTop="@dimen/dp5" />
+            android:layout_height="380dp"
+            android:layout_centerHorizontal="true" />
 
 
         <org.florescu.android.rangeseekbar.RangeSeekBar
             android:id="@+id/rangeSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/videoView"
-            android:layout_marginTop="@dimen/dp5" />
+            android:layout_below="@+id/videoView"/>
 
         <TextView
             android:id="@+id/tvLeft"
@@ -51,27 +47,13 @@
         <TextView
             android:id="@+id/tvInstructions"
             android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvRight"
             android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/dp5"
             android:gravity="center"
             android:text="@string/rangeSeekBarText"
             android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/upload_video_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvInstructions"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp5"
-            android:background="@drawable/upload_video_selector"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="@string/uploadVideo"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp16" />
 
         <TableLayout
             android:id="@+id/footer"
