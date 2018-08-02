@@ -29,10 +29,13 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.record_video_btn) {
-            dispatchTakeVideoIntent();
+            if (Build.VERSION.SDK_INT >= 23)
+                getCameraPermission();
+            else
+                dispatchTakeVideoIntent();
         } else if (view.getId() == R.id.upload_video_btn) {
             if (Build.VERSION.SDK_INT >= 23)
-                getPermission();
+                getStoragePermission();
             else
                 uploadVideo();
         }
@@ -65,7 +68,7 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    private void getPermission() {
+    private void getStoragePermission() {
         String[] params = null;
         String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         String readExternalStorage = Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -90,6 +93,14 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
             uploadVideo();
     }
 
+    private void getCameraPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            dispatchTakeVideoIntent();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 300);
+        }
+    }
+
 
     /**
      * Handling response for permission request
@@ -98,14 +109,18 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case 100: {
-
+            case 100:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     uploadVideo();
                 }
-            }
-            break;
+                break;
+            case 300:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    dispatchTakeVideoIntent();
+                }
+                break;
         }
     }
 

@@ -8,23 +8,21 @@
     android:fillViewport="true">
 
     <RelativeLayout
-
-
+        android:padding="@dimen/dp8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="380dp"
+            android:layout_height="@dimen/dp500"
             android:layout_centerHorizontal="true" />
-
 
         <org.florescu.android.rangeseekbar.RangeSeekBar
             android:id="@+id/rangeSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/videoView"/>
+            android:layout_below="@+id/videoView" />
 
         <TextView
             android:id="@+id/tvLeft"
@@ -47,127 +45,19 @@
         <TextView
             android:id="@+id/tvInstructions"
             android:layout_width="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvRight"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/rangeSeekBarText"
             android:textColor="#000000" />
 
-        <TableLayout
-            android:id="@+id/footer"
+        <include
+            layout="@layout/effects_scrollbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/upload_video_btn"
-            android:layout_marginTop="@dimen/dp5"
-            android:gravity="center_horizontal|bottom"
-            android:orientation="horizontal">
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/compressVideo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/compress_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/compressVideo"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
-
-                <TextView
-                    android:id="@+id/cropVideo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/crop_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/cutVideo"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp16" />
-
-                <TextView
-                    android:id="@+id/extractImages"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/compress_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/extractImages"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
-
-                <TextView
-                    android:id="@+id/extractAudio"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/crop_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/extractAudio"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp16" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/fadeEffect"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/crop_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/addFade"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp16" />
-
-                <TextView
-                    android:id="@+id/increaseSpeed"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/compress_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/increaseSpeed"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
-
-                <TextView
-                    android:id="@+id/decreaseSpeed"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/crop_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/decreaseSpeed"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp16" />
-
-                <TextView
-                    android:id="@+id/reverseVideo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/compress_video_selector"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="@string/reverseVideo"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp16" />
-            </TableRow>
-        </TableLayout>
-
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 </ScrollView>

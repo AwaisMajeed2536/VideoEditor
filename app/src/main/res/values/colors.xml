@@ -7,4 +7,6 @@
     <color name="off_white">#e4e094</color>
     <color name="black">#000000</color>
     <color name="dark_grey">#434343</color>
+    <color name="purple">#67007e</color>
+    <color name="blue">#02008e</color>
 </resources>

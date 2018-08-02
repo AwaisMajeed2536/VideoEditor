@@ -25,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -73,19 +74,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
-        TextView cutVideo = findViewById(R.id.cropVideo);
-        TextView compressVideo = findViewById(R.id.compressVideo);
-        TextView extractImages = findViewById(R.id.extractImages);
-        TextView fadeEffect = findViewById(R.id.fadeEffect);
-        TextView increaseSpeed = findViewById(R.id.increaseSpeed);
-        TextView decreaseSpeed = findViewById(R.id.decreaseSpeed);
-        final TextView reverseVideo = findViewById(R.id.reverseVideo);
-
+        LinearLayout cutVideo = findViewById(R.id.cropVideo);
+        LinearLayout compressVideo = findViewById(R.id.compressVideo);
+        LinearLayout extractImages = findViewById(R.id.extractImages);
+        LinearLayout fadeEffect = findViewById(R.id.fadeEffect);
+        LinearLayout increaseSpeed = findViewById(R.id.increaseSpeed);
+        LinearLayout decreaseSpeed = findViewById(R.id.decreaseSpeed);
+        LinearLayout reverseVideo = findViewById(R.id.reverseVideo);
+        LinearLayout extractAudio = findViewById(R.id.extractAudio);
 
         tvLeft = findViewById(R.id.tvLeft);
         tvRight = findViewById(R.id.tvRight);
 
-        final TextView extractAudio = findViewById(R.id.extractAudio);
         if (Build.VERSION.SDK_INT == 16)
             extractAudio.setVisibility(View.GONE);
         else
